@@ -1,0 +1,23 @@
+{
+  "name": "clean-code-patterns-demo",
+  "version": "1.0.0",
+  "description": "Demo projektu pokazujący wzorce projektowe, czysty kod i testowanie",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "cd backend && npm run dev",
+    "client:dev": "cd frontend && npm start",
+    "test": "concurrently \"npm run server:test\" \"npm run client:test\"",
+    "server:test": "cd backend && npm test",
+    "client:test": "cd frontend && npm test",
+    "build": "npm run server:build && npm run client:build",
+    "server:build": "cd backend && npm run build",
+    "client:build": "cd frontend && npm run build"
+  },
+  "keywords": ["typescript", "react", "node", "patterns", "testing", "clean-code"],
+  "author": "Demo",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
