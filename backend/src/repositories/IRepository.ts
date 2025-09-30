@@ -1,6 +1,6 @@
 /**
  * Repository Pattern - Interface
- * Abstrakcja dla dostępu do danych
+ * Abstraction for data access
  */
 export interface IRepository<T, ID> {
   findById(id: ID): Promise<T | null>;

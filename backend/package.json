@@ -1,7 +1,7 @@
 {
   "name": "clean-code-backend",
   "version": "1.0.0",
-  "description": "Backend z wzorcami projektowymi i testami",
+  "description": "Backend with design patterns and tests",
   "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon src/index.ts",

@@ -16,7 +16,7 @@ app.use(cors());
 app.use(morgan('combined'));
 app.use(express.json());
 
-// Health check - musi być przed errorHandler
+// Health check - must be before errorHandler
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
 });

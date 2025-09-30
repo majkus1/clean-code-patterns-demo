@@ -1,6 +1,6 @@
 /**
  * Singleton pattern - Logger
- * Zapewnia jedną instancję loggera w całej aplikacji
+ * Ensures single logger instance across the application
  */
 export class Logger {
   private static instance: Logger;

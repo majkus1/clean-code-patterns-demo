@@ -53,8 +53,8 @@ export const App: React.FC = () => {
     switch (apiStatus) {
       case 'online': return 'API Online';
       case 'offline': return 'API Offline';
-      case 'checking': return 'Sprawdzanie...';
-      default: return 'Nieznany';
+      case 'checking': return 'Checking...';
+      default: return 'Unknown';
     }
   };
 
@@ -77,13 +77,13 @@ export const App: React.FC = () => {
             onClick={() => setActiveTab('users')}
             className={`nav-button ${activeTab === 'users' ? 'active' : ''}`}
           >
-            👥 Użytkownicy
+            👥 Users
           </button>
           <button
             onClick={() => setActiveTab('products')}
             className={`nav-button ${activeTab === 'products' ? 'active' : ''}`}
           >
-            📦 Produkty
+            📦 Products
           </button>
         </nav>
 
@@ -94,10 +94,10 @@ export const App: React.FC = () => {
 
         <footer className="app-footer">
           <p>
-            Demo aplikacji pokazującej wzorce projektowe, czysty kod i testowanie
+            Demo application showcasing design patterns, clean code and testing
           </p>
           <div className="patterns-info">
-            <h4>Zaimplementowane wzorce:</h4>
+            <h4>Implemented patterns:</h4>
             <ul>
               <li>🏭 Factory Pattern</li>
               <li>🏪 Repository Pattern</li>

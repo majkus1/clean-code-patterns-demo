@@ -13,7 +13,7 @@ import {
 
 /**
  * Service Layer Pattern - API Service
- * Centralizuje komunikację z API
+ * Centralizes API communication
  */
 export class ApiService {
   private client: AxiosInstance;

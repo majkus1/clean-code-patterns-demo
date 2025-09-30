@@ -4,7 +4,7 @@ import { logger } from '../utils/logger';
 import { IEventPublisher } from '../events/IEventPublisher';
 
 /**
- * Service Layer Pattern dla produktów
+ * Service Layer Pattern for products
  */
 export class ProductService {
   constructor(

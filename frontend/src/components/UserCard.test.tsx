@@ -29,13 +29,13 @@ describe('UserCard', () => {
     
     expect(screen.getByText('Test User')).toBeInTheDocument();
     expect(screen.getByText('test@example.com')).toBeInTheDocument();
-    expect(screen.getByText('Utworzony:')).toBeInTheDocument();
+    expect(screen.getByText('Created:')).toBeInTheDocument();
   });
 
   it('calls onEdit when edit button is clicked', () => {
     render(<UserCard {...mockProps} />);
     
-    const editButton = screen.getByTitle('Edytuj użytkownika');
+    const editButton = screen.getByTitle('Edit user');
     fireEvent.click(editButton);
     
     expect(mockProps.onEdit).toHaveBeenCalledTimes(1);
@@ -44,7 +44,7 @@ describe('UserCard', () => {
   it('calls onDelete when delete button is clicked', () => {
     render(<UserCard {...mockProps} />);
     
-    const deleteButton = screen.getByTitle('Usuń użytkownika');
+    const deleteButton = screen.getByTitle('Delete user');
     fireEvent.click(deleteButton);
     
     expect(mockProps.onDelete).toHaveBeenCalledTimes(1);
@@ -53,7 +53,7 @@ describe('UserCard', () => {
   it('shows loading state when isDeleting is true', () => {
     render(<UserCard {...mockProps} isDeleting={true} />);
     
-    const deleteButton = screen.getByTitle('Usuń użytkownika');
+    const deleteButton = screen.getByTitle('Delete user');
     expect(deleteButton).toBeDisabled();
     expect(screen.getByText('⏳')).toBeInTheDocument();
   });
@@ -66,12 +66,12 @@ describe('UserCard', () => {
     
     render(<UserCard {...mockProps} user={userWithUpdate} />);
     
-    expect(screen.getByText('Zaktualizowany:')).toBeInTheDocument();
+    expect(screen.getByText('Updated:')).toBeInTheDocument();
   });
 
   it('does not show updated date when same as created date', () => {
     render(<UserCard {...mockProps} />);
     
-    expect(screen.queryByText('Zaktualizowany:')).not.toBeInTheDocument();
+    expect(screen.queryByText('Updated:')).not.toBeInTheDocument();
   });
 });

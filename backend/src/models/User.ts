@@ -1,6 +1,6 @@
 /**
- * Model użytkownika - przykład czystego kodu
- * Immutable data structure z walidacją
+ * User model - example of clean code
+ * Immutable data structure with validation
  */
 export interface User {
   readonly id: string;
@@ -22,7 +22,7 @@ export interface UpdateUserRequest {
 
 /**
  * Value Object pattern - UserId
- * Zapewnia type safety i walidację
+ * Ensures type safety and validation
  */
 export class UserId {
   private readonly value: string;
@@ -48,7 +48,7 @@ export class UserId {
 }
 
 /**
- * Factory pattern dla tworzenia użytkowników
+ * Factory pattern for creating users
  */
 export class UserFactory {
   public static createUser(id: string, email: string, name: string): User {

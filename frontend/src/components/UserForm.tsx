@@ -38,16 +38,16 @@ export const UserForm: React.FC<UserFormProps> = ({
 
     // Email validation
     if (!formData.email) {
-      newErrors.email = 'Email jest wymagany';
+      newErrors.email = 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Nieprawidłowy format email';
+      newErrors.email = 'Invalid email format';
     }
 
     // Name validation
     if (!formData.name) {
-      newErrors.name = 'Nazwa jest wymagana';
+      newErrors.name = 'Name is required';
     } else if (formData.name.trim().length < 2) {
-      newErrors.name = 'Nazwa musi mieć co najmniej 2 znaki';
+      newErrors.name = 'Name must be at least 2 characters';
     }
 
     setErrors(newErrors);
@@ -84,7 +84,7 @@ export const UserForm: React.FC<UserFormProps> = ({
   return (
     <div className="user-form-overlay">
       <div className="user-form">
-        <h3>{user ? 'Edytuj Użytkownika' : 'Dodaj Nowego Użytkownika'}</h3>
+        <h3>{user ? 'Edit User' : 'Add New User'}</h3>
         
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -102,7 +102,7 @@ export const UserForm: React.FC<UserFormProps> = ({
           </div>
 
           <div className="form-group">
-            <label htmlFor="name">Nazwa:</label>
+            <label htmlFor="name">Name:</label>
             <input
               type="text"
               id="name"
@@ -122,14 +122,14 @@ export const UserForm: React.FC<UserFormProps> = ({
               disabled={isSubmitting}
               className="btn btn-secondary"
             >
-              Anuluj
+              Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
               className="btn btn-primary"
             >
-              {isSubmitting ? 'Zapisywanie...' : (user ? 'Zaktualizuj' : 'Utwórz')}
+              {isSubmitting ? 'Saving...' : (user ? 'Update' : 'Create')}
             </button>
           </div>
         </form>

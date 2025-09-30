@@ -57,7 +57,7 @@ export const UserList: React.FC = () => {
   };
 
   const handleDeleteUser = async (id: string) => {
-    if (window.confirm('Czy na pewno chcesz usunąć tego użytkownika?')) {
+    if (window.confirm('Are you sure you want to delete this user?')) {
       try {
         await new Promise<void>((resolve, reject) => {
           deleteUser(id, {
@@ -74,7 +74,7 @@ export const UserList: React.FC = () => {
   if (isLoading) {
     return (
       <div className="loading">
-        <p>Ładowanie użytkowników...</p>
+        <p>Loading users...</p>
       </div>
     );
   }
@@ -82,7 +82,7 @@ export const UserList: React.FC = () => {
   if (error) {
     return (
       <div className="error">
-        <p>Błąd podczas ładowania użytkowników: {error.message}</p>
+        <p>Error loading users: {error.message}</p>
       </div>
     );
   }
@@ -90,13 +90,13 @@ export const UserList: React.FC = () => {
   return (
     <div className="user-list">
       <div className="user-list-header">
-        <h2>Lista Użytkowników</h2>
+        <h2>Users List</h2>
         <button 
           onClick={() => setShowForm(true)}
           disabled={isCreating}
           className="btn btn-primary"
         >
-          {isCreating ? 'Tworzenie...' : 'Dodaj Użytkownika'}
+          {isCreating ? 'Creating...' : 'Add User'}
         </button>
       </div>
 
@@ -119,7 +119,7 @@ export const UserList: React.FC = () => {
 
       <div className="user-grid">
         {users.length === 0 ? (
-          <p className="empty-state">Brak użytkowników do wyświetlenia</p>
+          <p className="empty-state">No users to display</p>
         ) : (
           users.map((user) => (
             <UserCard

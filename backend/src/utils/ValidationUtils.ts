@@ -78,11 +78,11 @@ export const validateUser = (userData: {
   const errors: string[] = [];
   
   if (!isValidEmail(userData.email || '')) {
-    errors.push('Email jest wymagany i musi mieć poprawny format');
+    errors.push('Email is required and must have valid format');
   }
   
   if (!isValidName(userData.name || '')) {
-    errors.push('Nazwa jest wymagana i musi mieć od 2 do 100 znaków');
+    errors.push('Name is required and must be between 2 and 100 characters');
   }
   
   return {
@@ -103,15 +103,15 @@ export const validateProduct = (productData: {
   const errors: string[] = [];
   
   if (!isValidString(productData.name || '', 2, 200)) {
-    errors.push('Nazwa produktu jest wymagana i musi mieć od 2 do 200 znaków');
+    errors.push('Product name is required and must be between 2 and 200 characters');
   }
   
   if (!isValidPrice(productData.price || 0)) {
-    errors.push('Cena jest wymagana i musi być liczbą większą od 0');
+    errors.push('Price is required and must be a number greater than 0');
   }
   
   if (!isValidString(productData.description || '', 10, 1000)) {
-    errors.push('Opis produktu jest wymagany i musi mieć od 10 do 1000 znaków');
+    errors.push('Product description is required and must be between 10 and 1000 characters');
   }
   
   return {

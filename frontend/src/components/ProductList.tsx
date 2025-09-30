@@ -69,7 +69,7 @@ export const ProductList: React.FC = () => {
   };
 
   const handleDeleteProduct = async (id: string) => {
-    if (window.confirm('Czy na pewno chcesz usunąć ten produkt?')) {
+    if (window.confirm('Are you sure you want to delete this product?')) {
       try {
         await new Promise<void>((resolve, reject) => {
           deleteProduct(id, {
@@ -100,17 +100,17 @@ export const ProductList: React.FC = () => {
   };
 
   const categoryLabels: Record<ProductCategory, string> = {
-    [ProductCategory.ELECTRONICS]: 'Elektronika',
-    [ProductCategory.CLOTHING]: 'Odzież',
-    [ProductCategory.BOOKS]: 'Książki',
-    [ProductCategory.HOME]: 'Dom',
-    [ProductCategory.SPORTS]: 'Sport'
+    [ProductCategory.ELECTRONICS]: 'Electronics',
+    [ProductCategory.CLOTHING]: 'Clothing',
+    [ProductCategory.BOOKS]: 'Books',
+    [ProductCategory.HOME]: 'Home',
+    [ProductCategory.SPORTS]: 'Sports'
   };
 
   if (isLoading) {
     return (
       <div className="loading">
-        <p>Ładowanie produktów...</p>
+        <p>Loading products...</p>
       </div>
     );
   }
@@ -118,7 +118,7 @@ export const ProductList: React.FC = () => {
   if (error) {
     return (
       <div className="error">
-        <p>Błąd podczas ładowania produktów: {error.message}</p>
+        <p>Error loading products: {error.message}</p>
       </div>
     );
   }
@@ -126,7 +126,7 @@ export const ProductList: React.FC = () => {
   return (
     <div className="product-list">
       <div className="product-list-header">
-        <h2>Lista Produktów</h2>
+        <h2>Products List</h2>
         <button 
           onClick={() => setShowForm(true)}
           disabled={isCreating}
@@ -188,8 +188,8 @@ export const ProductList: React.FC = () => {
         {getFilteredProducts().length === 0 ? (
           <p className="empty-state">
             {searchQuery || selectedCategory !== 'all' 
-              ? 'Brak produktów spełniających kryteria wyszukiwania' 
-              : 'Brak produktów do wyświetlenia'
+              ? 'No products matching search criteria' 
+              : 'No products to display'
             }
           </p>
         ) : (

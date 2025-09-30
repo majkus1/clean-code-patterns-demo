@@ -15,7 +15,7 @@ export class UserService {
   ) {}
   
   /**
-   * Single Responsibility Principle - jedna metoda, jedna odpowiedzialność
+   * Single Responsibility Principle - one method, one responsibility
    */
   public async createUser(request: CreateUserRequest): Promise<User> {
     logger.info('Creating new user', { email: request.email });

@@ -1,7 +1,7 @@
 import { User } from '../models/User';
 
 /**
- * Domain Events - przykłady zdarzeń domenowych
+ * Domain Events - examples of domain events
  */
 export abstract class DomainEvent {
   public readonly occurredAt: Date;

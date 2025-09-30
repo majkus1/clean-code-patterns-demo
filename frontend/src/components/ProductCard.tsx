@@ -9,11 +9,11 @@ interface ProductCardProps {
 }
 
 const categoryLabels: Record<ProductCategory, string> = {
-  [ProductCategory.ELECTRONICS]: 'Elektronika',
-  [ProductCategory.CLOTHING]: 'Odzież',
-  [ProductCategory.BOOKS]: 'Książki',
-  [ProductCategory.HOME]: 'Dom',
-  [ProductCategory.SPORTS]: 'Sport'
+  [ProductCategory.ELECTRONICS]: 'Electronics',
+  [ProductCategory.CLOTHING]: 'Clothing',
+  [ProductCategory.BOOKS]: 'Books',
+  [ProductCategory.HOME]: 'Home',
+  [ProductCategory.SPORTS]: 'Sports'
 };
 
 const categoryEmojis: Record<ProductCategory, string> = {
@@ -68,7 +68,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             onClick={onDelete}
             disabled={isDeleting}
             className="btn btn-small btn-danger"
-            title="Usuń produkt"
+            title="Delete product"
           >
             {isDeleting ? '⏳' : '🗑️'}
           </button>
@@ -90,7 +90,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         <div className="product-status">
           <span className={`status-badge ${product.inStock ? 'in-stock' : 'out-of-stock'}`}>
-            {product.inStock ? '✅ Dostępny' : '❌ Niedostępny'}
+            {product.inStock ? '✅ Available' : '❌ Out of Stock'}
           </span>
         </div>
 

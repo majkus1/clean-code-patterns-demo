@@ -1,5 +1,5 @@
 /**
- * Model produktu z przykładami wzorców projektowych
+ * Product model with design pattern examples
  */
 export interface Product {
   readonly id: string;
@@ -38,7 +38,7 @@ export interface UpdateProductRequest {
 
 /**
  * Value Object - Money
- * Przykład Domain-Driven Design
+ * Example of Domain-Driven Design
  */
 export class Money {
   private readonly amount: number;
@@ -88,7 +88,7 @@ export class Money {
 }
 
 /**
- * Factory pattern dla produktów
+ * Factory pattern for products
  */
 export class ProductFactory {
   public static createProduct(

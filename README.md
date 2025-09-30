@@ -1,77 +1,77 @@
 # 🏗️ Clean Code & Design Patterns Demo
 
-Kompletny projekt demonstracyjny pokazujący **wzorce projektowe**, **czysty kod** i **testowanie** w praktyce. Zbudowany z React + Node.js + TypeScript.
+A comprehensive demonstration project showcasing **design patterns**, **clean code** principles, and **testing** in practice. Built with React + Node.js + TypeScript.
 
-## 🎯 Cel projektu
+## 🎯 Project Goals
 
-Projekt ma na celu pokazanie w praktyce:
-- **Wzorców projektowych** (Design Patterns)
-- **Zasad czystego kodu** (Clean Code)
-- **Zasad SOLID**
-- **Testowania** (Unit tests, Integration tests)
-- **Architektury aplikacji** (Layered Architecture)
+This project aims to demonstrate in practice:
+- **Design Patterns** implementation
+- **Clean Code** principles
+- **SOLID** principles
+- **Testing** (Unit tests, Integration tests)
+- **Application Architecture** (Layered Architecture)
 
-## 🚀 Szybki start
+## 🚀 Quick Start
 
-### Wymagania
+### Requirements
 - Node.js 18+
-- npm lub yarn
+- npm or yarn
 
-### Instalacja i uruchomienie
+### Installation and Setup
 
 ```bash
-# Klonowanie repozytorium
+# Clone the repository
 git clone <repository-url>
 cd clean-code-patterns-demo
 
-# Instalacja zależności
+# Install dependencies
 npm install
 
-# Uruchomienie backendu (port 3001)
+# Start backend (port 3001)
 cd backend
 npm install
 npm run dev
 
-# Uruchomienie frontendu (port 3000)
+# Start frontend (port 3000)
 cd ../frontend
 npm install
 npm start
 
-# Uruchomienie testów
+# Run tests
 npm test
 ```
 
-## 📁 Struktura projektu
+## 📁 Project Structure
 
 ```
 ├── backend/                 # Node.js + Express + TypeScript
 │   ├── src/
-│   │   ├── controllers/     # Kontrolery HTTP
-│   │   ├── services/        # Logika biznesowa
-│   │   ├── repositories/    # Wzorzec Repository
-│   │   ├── models/          # Modele danych
-│   │   ├── events/          # Wzorzec Observer
-│   │   ├── strategies/      # Wzorzec Strategy
-│   │   ├── utils/           # Funkcje pomocnicze
-│   │   ├── middleware/      # Middleware Express
+│   │   ├── controllers/     # HTTP Controllers
+│   │   ├── services/        # Business Logic
+│   │   ├── repositories/    # Repository Pattern
+│   │   ├── models/          # Data Models
+│   │   ├── events/          # Observer Pattern
+│   │   ├── strategies/      # Strategy Pattern
+│   │   ├── utils/           # Utility Functions
+│   │   ├── middleware/      # Express Middleware
 │   │   ├── routes/          # Routing
-│   │   └── test/            # Testy
+│   │   └── test/            # Tests
 │   └── package.json
 ├── frontend/                # React + TypeScript
 │   ├── src/
-│   │   ├── components/      # Komponenty React
+│   │   ├── components/      # React Components
 │   │   ├── hooks/           # Custom Hooks
 │   │   ├── services/        # API Service
-│   │   ├── types/           # TypeScript types
-│   │   └── test/            # Testy
+│   │   ├── types/           # TypeScript Types
+│   │   └── test/            # Tests
 │   └── package.json
 └── package.json            # Root package.json
 ```
 
-## 🎨 Zaimplementowane wzorce projektowe
+## 🎨 Implemented Design Patterns
 
 ### 1. 🏭 Factory Pattern
-**Lokalizacja:** `backend/src/models/User.ts`, `backend/src/models/Product.ts`
+**Location:** `backend/src/models/User.ts`, `backend/src/models/Product.ts`
 
 ```typescript
 export class UserFactory {
@@ -91,13 +91,13 @@ export class UserFactory {
 }
 ```
 
-**Zalety:**
-- Centralizuje logikę tworzenia obiektów
-- Walidacja danych w jednym miejscu
-- Łatwe testowanie
+**Benefits:**
+- Centralizes object creation logic
+- Data validation in one place
+- Easy testing
 
 ### 2. 🏪 Repository Pattern
-**Lokalizacja:** `backend/src/repositories/`
+**Location:** `backend/src/repositories/`
 
 ```typescript
 export interface IRepository<T, ID> {
@@ -113,13 +113,13 @@ export class InMemoryUserRepository implements IRepository<User, UserId> {
 }
 ```
 
-**Zalety:**
-- Abstrakcja dostępu do danych
-- Łatwe testowanie (mock repository)
-- Możliwość zmiany implementacji (database, API, file)
+**Benefits:**
+- Data access abstraction
+- Easy testing (mock repository)
+- Ability to change implementation (database, API, file)
 
 ### 3. 🔧 Service Layer Pattern
-**Lokalizacja:** `backend/src/services/`
+**Location:** `backend/src/services/`
 
 ```typescript
 export class UserService {
@@ -129,7 +129,7 @@ export class UserService {
   ) {}
   
   public async createUser(request: CreateUserRequest): Promise<User> {
-    // Logika biznesowa
+    // Business logic
     const existingUser = await this.userRepository.findByEmail(request.email);
     if (existingUser) {
       throw new Error('User with this email already exists');
@@ -146,13 +146,13 @@ export class UserService {
 }
 ```
 
-**Zalety:**
-- Separacja logiki biznesowej od kontrolerów
+**Benefits:**
+- Separation of business logic from controllers
 - Dependency Injection
-- Łatwe testowanie jednostkowe
+- Easy unit testing
 
 ### 4. 👁️ Observer Pattern
-**Lokalizacja:** `backend/src/events/`
+**Location:** `backend/src/events/`
 
 ```typescript
 export interface IEventPublisher {
@@ -166,19 +166,19 @@ export class UserCreatedEvent extends DomainEvent {
   }
 }
 
-// Użycie:
+// Usage:
 eventPublisher.subscribe('UserCreatedEvent', async (event) => {
   console.log(`🎉 New user created: ${event.user.name}`);
 });
 ```
 
-**Zalety:**
-- Loose coupling między komponentami
-- Rozszerzalność bez modyfikacji istniejącego kodu
+**Benefits:**
+- Loose coupling between components
+- Extensibility without modifying existing code
 - Event-driven architecture
 
 ### 5. 🎯 Strategy Pattern
-**Lokalizacja:** `backend/src/strategies/`
+**Location:** `backend/src/strategies/`
 
 ```typescript
 export interface NotificationStrategy {
@@ -207,13 +207,13 @@ export class NotificationService {
 }
 ```
 
-**Zalety:**
+**Benefits:**
 - Open/Closed Principle
-- Łatwe dodawanie nowych strategii
+- Easy addition of new strategies
 - Runtime selection of algorithm
 
 ### 6. 🎣 Custom Hooks Pattern (React)
-**Lokalizacja:** `frontend/src/hooks/`
+**Location:** `frontend/src/hooks/`
 
 ```typescript
 export const useUsers = () => {
@@ -247,13 +247,13 @@ export const useUsers = () => {
 };
 ```
 
-**Zalety:**
+**Benefits:**
 - Reusable logic
 - Separation of concerns
 - Easy testing
 
 ### 7. 🏗️ Dependency Injection
-**Lokalizacja:** `backend/src/routes/userRoutes.ts`
+**Location:** `backend/src/routes/userRoutes.ts`
 
 ```typescript
 // Dependency Injection Container
@@ -263,38 +263,38 @@ const userService = new UserService(userRepository, eventPublisher);
 const userController = new UserController(userService);
 ```
 
-**Zalety:**
+**Benefits:**
 - Inversion of Control
 - Loose coupling
 - Easy testing with mocks
 
-## 🧪 Testowanie
+## 🧪 Testing
 
 ### Backend Tests
 ```bash
 cd backend
-npm test                    # Wszystkie testy
-npm run test:watch         # Testy w trybie watch
-npm run test:coverage      # Testy z pokryciem kodu
+npm test                    # All tests
+npm run test:watch         # Tests in watch mode
+npm run test:coverage      # Tests with code coverage
 ```
 
-**Typy testów:**
-- **Unit tests** - testowanie pojedynczych funkcji/klas
-- **Integration tests** - testowanie integracji z API
-- **Repository tests** - testowanie dostępu do danych
+**Test Types:**
+- **Unit tests** - testing individual functions/classes
+- **Integration tests** - testing API integration
+- **Repository tests** - testing data access
 
 ### Frontend Tests
 ```bash
 cd frontend
-npm test                   # Testy komponentów
+npm test                   # Component tests
 ```
 
-**Technologie testowe:**
+**Testing Technologies:**
 - **Jest** - test runner
-- **React Testing Library** - testowanie komponentów
-- **Supertest** - testowanie API endpoints
+- **React Testing Library** - component testing
+- **Supertest** - API endpoint testing
 
-### Przykłady testów
+### Test Examples
 
 ```typescript
 // Unit test - UserFactory
@@ -348,7 +348,7 @@ describe('UserCard', () => {
   it('calls onEdit when edit button is clicked', () => {
     render(<UserCard {...mockProps} />);
     
-    const editButton = screen.getByTitle('Edytuj użytkownika');
+    const editButton = screen.getByTitle('Edit user');
     fireEvent.click(editButton);
     
     expect(mockProps.onEdit).toHaveBeenCalledTimes(1);
@@ -356,11 +356,11 @@ describe('UserCard', () => {
 });
 ```
 
-## 🎨 Zasady czystego kodu
+## 🎨 Clean Code Principles
 
 ### 1. Single Responsibility Principle (SRP)
 ```typescript
-// ❌ Złe - jedna klasa robi za dużo
+// ❌ Bad - one class does too much
 class UserManager {
   createUser() { /* ... */ }
   sendEmail() { /* ... */ }
@@ -368,7 +368,7 @@ class UserManager {
   validateData() { /* ... */ }
 }
 
-// ✅ Dobre - każda klasa ma jedną odpowiedzialność
+// ✅ Good - each class has one responsibility
 class UserService {
   createUser() { /* ... */ }
 }
@@ -388,7 +388,7 @@ class ValidationUtils {
 
 ### 2. Open/Closed Principle (OCP)
 ```typescript
-// ✅ Łatwe rozszerzanie bez modyfikacji istniejącego kodu
+// ✅ Easy extension without modifying existing code
 class NotificationService {
   private strategies: NotificationStrategy[] = [];
   
@@ -397,15 +397,15 @@ class NotificationService {
   }
 }
 
-// Nowa strategia bez modyfikacji NotificationService
+// New strategy without modifying NotificationService
 class SlackNotificationStrategy implements NotificationStrategy {
-  // implementacja...
+  // implementation...
 }
 ```
 
 ### 3. Interface Segregation Principle (ISP)
 ```typescript
-// ✅ Małe, skupione interfejsy
+// ✅ Small, focused interfaces
 interface IRepository<T, ID> {
   findById(id: ID): Promise<T | null>;
   findAll(): Promise<T[]>;
@@ -415,7 +415,7 @@ interface IUserRepository extends IRepository<User, UserId> {
   findByEmail(email: string): Promise<User | null>;
 }
 
-// ❌ Złe - duży interfejs z wieloma odpowiedzialnościami
+// ❌ Bad - large interface with multiple responsibilities
 interface IUserManager {
   createUser(): Promise<User>;
   deleteUser(): Promise<void>;
@@ -427,23 +427,23 @@ interface IUserManager {
 
 ### 4. Dependency Inversion Principle (DIP)
 ```typescript
-// ✅ Zależność od abstrakcji, nie konkretnej implementacji
+// ✅ Dependency on abstraction, not concrete implementation
 class UserService {
   constructor(
-    private readonly userRepository: IUserRepository,  // Abstrakcja
-    private readonly eventPublisher: IEventPublisher   // Abstrakcja
+    private readonly userRepository: IUserRepository,  // Abstraction
+    private readonly eventPublisher: IEventPublisher   // Abstraction
   ) {}
 }
 
-// ❌ Złe - zależność od konkretnej implementacji
+// ❌ Bad - dependency on concrete implementation
 class UserService {
   constructor(
-    private readonly userRepository: InMemoryUserRepository  // Konkretna klasa
+    private readonly userRepository: InMemoryUserRepository  // Concrete class
   ) {}
 }
 ```
 
-## 🔧 Technologie i narzędzia
+## 🔧 Technologies and Tools
 
 ### Backend
 - **Node.js** - runtime environment
@@ -463,7 +463,7 @@ class UserService {
 - **React Testing Library** - component testing
 - **Jest** - testing framework
 
-## 📊 Metryki jakości kodu
+## 📊 Code Quality Metrics
 
 ### Test Coverage
 ```bash
@@ -483,75 +483,75 @@ cd backend && npm run lint
 cd frontend && npm run build
 ```
 
-## 🚀 Funkcjonalności
+## 🚀 Features
 
 ### Backend API
 - **Users Management**
-  - `POST /api/users` - Tworzenie użytkownika
-  - `GET /api/users` - Lista użytkowników
-  - `GET /api/users/:id` - Pobieranie użytkownika
-  - `PUT /api/users/:id` - Aktualizacja użytkownika
-  - `DELETE /api/users/:id` - Usuwanie użytkownika
-  - `GET /api/users/email?email=...` - Wyszukiwanie po email
+  - `POST /api/users` - Create user
+  - `GET /api/users` - List users
+  - `GET /api/users/:id` - Get user
+  - `PUT /api/users/:id` - Update user
+  - `DELETE /api/users/:id` - Delete user
+  - `GET /api/users/email?email=...` - Search by email
 
 - **Products Management**
-  - `POST /api/products` - Tworzenie produktu
-  - `GET /api/products` - Lista produktów
-  - `GET /api/products/:id` - Pobieranie produktu
-  - `PUT /api/products/:id` - Aktualizacja produktu
-  - `DELETE /api/products/:id` - Usuwanie produktu
-  - `GET /api/products/category/:category` - Produkty po kategorii
-  - `GET /api/products/search?q=...` - Wyszukiwanie produktów
-  - `GET /api/products/in-stock` - Dostępne produkty
+  - `POST /api/products` - Create product
+  - `GET /api/products` - List products
+  - `GET /api/products/:id` - Get product
+  - `PUT /api/products/:id` - Update product
+  - `DELETE /api/products/:id` - Delete product
+  - `GET /api/products/category/:category` - Products by category
+  - `GET /api/products/search?q=...` - Search products
+  - `GET /api/products/in-stock` - Available products
 
 - **Health Check**
-  - `GET /health` - Status API
+  - `GET /health` - API status
 
 ### Frontend Features
 - **User Management**
-  - Lista użytkowników z wyszukiwaniem
-  - Tworzenie nowych użytkowników
-  - Edycja istniejących użytkowników
-  - Usuwanie użytkowników
-  - Walidacja formularzy
+  - User list with search functionality
+  - Create new users
+  - Edit existing users
+  - Delete users
+  - Form validation
 
 - **Product Management**
-  - Lista produktów z filtrowaniem
-  - Tworzenie nowych produktów
-  - Edycja istniejących produktów
-  - Usuwanie produktów
-  - Wyszukiwanie po nazwie i opisie
-  - Filtrowanie po kategorii
+  - Product list with filtering
+  - Create new products
+  - Edit existing products
+  - Delete products
+  - Search by name and description
+  - Filter by category
 
 - **UI/UX Features**
-  - Responsywny design
+  - Responsive design
   - Loading states
   - Error handling
   - Form validation
   - Real-time API status
 
-## 📚 Nauka i rozwój
+## 📚 Learning and Development
 
-### Co możesz nauczyć się z tego projektu:
+### What you can learn from this project:
 
-1. **Wzorce projektowe w praktyce**
-   - Kiedy i jak używać różnych wzorców
-   - Kombinowanie wzorców w aplikacji
-   - Trade-offs między wzorcami
+1. **Design Patterns in Practice**
+   - When and how to use different patterns
+   - Combining patterns in applications
+   - Trade-offs between patterns
 
-2. **Czysty kod**
-   - Nazewnictwo zmiennych i funkcji
-   - Długość funkcji i klas
-   - Struktura kodu
-   - Dokumentacja
+2. **Clean Code**
+   - Variable and function naming
+   - Function and class length
+   - Code structure
+   - Documentation
 
-3. **Testowanie**
-   - Pisanie dobrych testów
-   - Różne typy testów
-   - Mocking i stubbing
+3. **Testing**
+   - Writing good tests
+   - Different types of tests
+   - Mocking and stubbing
    - Test coverage
 
-4. **Architektura aplikacji**
+4. **Application Architecture**
    - Layered architecture
    - Separation of concerns
    - Dependency injection
@@ -559,45 +559,45 @@ cd frontend && npm run build
 
 5. **TypeScript**
    - Type safety
-   - Interfaces i types
+   - Interfaces and types
    - Generic types
    - Utility types
 
-## 🤝 Wkład w projekt
+## 🤝 Contributing
 
-Jeśli chcesz dodać nowe funkcjonalności lub poprawić istniejące:
+If you want to add new features or improve existing ones:
 
-1. Fork projektu
-2. Utwórz branch dla nowej funkcjonalności
-3. Dodaj testy dla nowego kodu
-4. Upewnij się, że wszystkie testy przechodzą
-5. Utwórz Pull Request
+1. Fork the project
+2. Create a branch for the new feature
+3. Add tests for the new code
+4. Make sure all tests pass
+5. Create a Pull Request
 
-## 📝 Licencja
+## 📝 License
 
-MIT License - możesz swobodnie używać tego kodu do nauki i projektów.
+MIT License - you can freely use this code for learning and projects.
 
-## 🎓 Dalsze kroki
+## 🎓 Next Steps
 
-Po przeanalizowaniu tego projektu możesz:
+After analyzing this project, you can:
 
-1. **Rozszerzyć funkcjonalności**
-   - Dodaj autentykację i autoryzację
-   - Implementuj prawdziwą bazę danych
-   - Dodaj cache'owanie
-   - Implementuj real-time features
+1. **Extend Functionality**
+   - Add authentication and authorization
+   - Implement a real database
+   - Add caching
+   - Implement real-time features
 
-2. **Dodaj nowe wzorce**
+2. **Add New Patterns**
    - Builder Pattern
    - Command Pattern
    - Decorator Pattern
    - Facade Pattern
 
-3. **Popraw jakość kodu**
-   - Dodaj więcej testów
-   - Implementuj logging
-   - Dodaj monitoring
-   - Popraw error handling
+3. **Improve Code Quality**
+   - Add more tests
+   - Implement logging
+   - Add monitoring
+   - Improve error handling
 
 4. **Deployment**
    - Docker containerization
@@ -607,6 +607,6 @@ Po przeanalizowaniu tego projektu możesz:
 
 ---
 
-**Powodzenia w nauce! 🚀**
+**Good luck with learning! 🚀**
 
-*Ten projekt jest doskonałym punktem wyjścia do zrozumienia zaawansowanych konceptów programowania. Każdy wzorzec i technika ma swoje zastosowanie w rzeczywistych projektach.*
+*This project is an excellent starting point for understanding advanced programming concepts. Every pattern and technique has its application in real-world projects.*

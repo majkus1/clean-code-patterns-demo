@@ -5,7 +5,7 @@ import { UserId } from '../models/User';
 
 /**
  * Repository Pattern - In-Memory Implementation
- * Przykład czystej implementacji z dependency injection
+ * Example of clean implementation with dependency injection
  */
 export class InMemoryUserRepository implements IRepository<User, UserId> {
   private users: Map<string, User> = new Map();

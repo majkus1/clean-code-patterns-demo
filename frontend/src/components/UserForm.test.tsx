@@ -25,29 +25,29 @@ describe('UserForm', () => {
   it('renders create form when no user provided', () => {
     render(<UserForm {...mockProps} />);
     
-    expect(screen.getByText('Dodaj Nowego Użytkownika')).toBeInTheDocument();
+    expect(screen.getByText('Add New User')).toBeInTheDocument();
     expect(screen.getAllByDisplayValue('')).toHaveLength(2);
-    expect(screen.getByText('Utwórz')).toBeInTheDocument();
+    expect(screen.getByText('Create')).toBeInTheDocument();
   });
 
   it('renders edit form when user provided', () => {
     render(<UserForm {...mockProps} user={mockUser} />);
     
-    expect(screen.getByText('Edytuj Użytkownika')).toBeInTheDocument();
+    expect(screen.getByText('Edit User')).toBeInTheDocument();
     expect(screen.getByDisplayValue('test@example.com')).toBeInTheDocument();
     expect(screen.getByDisplayValue('Test User')).toBeInTheDocument();
-    expect(screen.getByText('Zaktualizuj')).toBeInTheDocument();
+    expect(screen.getByText('Update')).toBeInTheDocument();
   });
 
   it('validates required fields', async () => {
     render(<UserForm {...mockProps} />);
     
-    const submitButton = screen.getByText('Utwórz');
+    const submitButton = screen.getByText('Create');
     fireEvent.click(submitButton);
     
     await waitFor(() => {
-      expect(screen.getByText('Email jest wymagany')).toBeInTheDocument();
-      expect(screen.getByText('Nazwa jest wymagana')).toBeInTheDocument();
+      expect(screen.getByText('Email is required')).toBeInTheDocument();
+      expect(screen.getByText('Name is required')).toBeInTheDocument();
     });
     
     expect(mockProps.onSubmit).not.toHaveBeenCalled();
@@ -57,14 +57,14 @@ describe('UserForm', () => {
     render(<UserForm {...mockProps} />);
     
     const emailInput = screen.getByLabelText('Email:');
-    const submitButton = screen.getByText('Utwórz');
+    const submitButton = screen.getByText('Create');
     
     fireEvent.change(emailInput, { target: { value: 'invalid-email' } });
-    fireEvent.change(screen.getByLabelText('Nazwa:'), { target: { value: 'Test User' } });
+    fireEvent.change(screen.getByLabelText('Name:'), { target: { value: 'Test User' } });
     fireEvent.click(submitButton);
     
     await waitFor(() => {
-      expect(screen.getByText('Nieprawidłowy format email')).toBeInTheDocument();
+      expect(screen.getByText('Invalid email format')).toBeInTheDocument();
     });
     
     expect(mockProps.onSubmit).not.toHaveBeenCalled();
@@ -73,15 +73,15 @@ describe('UserForm', () => {
   it('validates name length', async () => {
     render(<UserForm {...mockProps} />);
     
-    const nameInput = screen.getByLabelText('Nazwa:');
-    const submitButton = screen.getByText('Utwórz');
+    const nameInput = screen.getByLabelText('Name:');
+    const submitButton = screen.getByText('Create');
     
     fireEvent.change(screen.getByLabelText('Email:'), { target: { value: 'test@example.com' } });
     fireEvent.change(nameInput, { target: { value: 'A' } });
     fireEvent.click(submitButton);
     
     await waitFor(() => {
-      expect(screen.getByText('Nazwa musi mieć co najmniej 2 znaki')).toBeInTheDocument();
+      expect(screen.getByText('Name must be at least 2 characters')).toBeInTheDocument();
     });
     
     expect(mockProps.onSubmit).not.toHaveBeenCalled();
@@ -91,9 +91,9 @@ describe('UserForm', () => {
     render(<UserForm {...mockProps} />);
     
     fireEvent.change(screen.getByLabelText('Email:'), { target: { value: 'test@example.com' } });
-    fireEvent.change(screen.getByLabelText('Nazwa:'), { target: { value: 'Test User' } });
+    fireEvent.change(screen.getByLabelText('Name:'), { target: { value: 'Test User' } });
     
-    const submitButton = screen.getByText('Utwórz');
+    const submitButton = screen.getByText('Create');
     fireEvent.click(submitButton);
     
     await waitFor(() => {
@@ -108,9 +108,9 @@ describe('UserForm', () => {
     render(<UserForm {...mockProps} />);
     
     fireEvent.change(screen.getByLabelText('Email:'), { target: { value: '  test@example.com  ' } });
-    fireEvent.change(screen.getByLabelText('Nazwa:'), { target: { value: '  Test User  ' } });
+    fireEvent.change(screen.getByLabelText('Name:'), { target: { value: '  Test User  ' } });
     
-    const submitButton = screen.getByText('Utwórz');
+    const submitButton = screen.getByText('Create');
     fireEvent.click(submitButton);
     
     await waitFor(() => {
@@ -124,7 +124,7 @@ describe('UserForm', () => {
   it('calls onCancel when cancel button is clicked', () => {
     render(<UserForm {...mockProps} />);
     
-    const cancelButton = screen.getByText('Anuluj');
+    const cancelButton = screen.getByText('Cancel');
     fireEvent.click(cancelButton);
     
     expect(mockProps.onCancel).toHaveBeenCalledTimes(1);
@@ -134,29 +134,29 @@ describe('UserForm', () => {
     render(<UserForm {...mockProps} isSubmitting={true} />);
     
     expect(screen.getByLabelText('Email:')).toBeDisabled();
-    expect(screen.getByLabelText('Nazwa:')).toBeDisabled();
-    expect(screen.getByText('Zapisywanie...')).toBeInTheDocument();
-    expect(screen.getByText('Anuluj')).toBeDisabled();
+    expect(screen.getByLabelText('Name:')).toBeDisabled();
+    expect(screen.getByText('Saving...')).toBeInTheDocument();
+    expect(screen.getByText('Cancel')).toBeDisabled();
   });
 
   it('clears errors when user starts typing', async () => {
     render(<UserForm {...mockProps} />);
     
     const emailInput = screen.getByLabelText('Email:');
-    const submitButton = screen.getByText('Utwórz');
+    const submitButton = screen.getByText('Create');
     
     // Submit to trigger validation
     fireEvent.click(submitButton);
     
     await waitFor(() => {
-      expect(screen.getByText('Email jest wymagany')).toBeInTheDocument();
+      expect(screen.getByText('Email is required')).toBeInTheDocument();
     });
     
     // Start typing to clear error
     fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
     
     await waitFor(() => {
-      expect(screen.queryByText('Email jest wymagany')).not.toBeInTheDocument();
+      expect(screen.queryByText('Email is required')).not.toBeInTheDocument();
     });
   });
 });

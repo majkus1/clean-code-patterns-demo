@@ -1,6 +1,6 @@
 /**
  * TypeScript interfaces dla API
- * Przykład czystego kodu z silnym typowaniem
+ * Example of clean code with strong typing
  */
 
 export interface User {

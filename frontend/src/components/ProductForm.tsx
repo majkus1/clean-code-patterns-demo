@@ -15,11 +15,11 @@ interface ProductFormProps {
 }
 
 const categoryLabels: Record<ProductCategory, string> = {
-  [ProductCategory.ELECTRONICS]: 'Elektronika',
-  [ProductCategory.CLOTHING]: 'Odzież',
-  [ProductCategory.BOOKS]: 'Książki',
-  [ProductCategory.HOME]: 'Dom',
-  [ProductCategory.SPORTS]: 'Sport'
+  [ProductCategory.ELECTRONICS]: 'Electronics',
+  [ProductCategory.CLOTHING]: 'Clothing',
+  [ProductCategory.BOOKS]: 'Books',
+  [ProductCategory.HOME]: 'Home',
+  [ProductCategory.SPORTS]: 'Sports'
 };
 
 export const ProductForm: React.FC<ProductFormProps> = ({
@@ -56,19 +56,19 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     if (!formData.name) {
       newErrors.name = 'Nazwa jest wymagana';
     } else if (formData.name.trim().length < 2) {
-      newErrors.name = 'Nazwa musi mieć co najmniej 2 znaki';
+      newErrors.name = 'Name must be at least 2 characters';
     }
 
     // Price validation
     if (formData.price <= 0) {
-      newErrors.price = 'Cena musi być większa od 0';
+      newErrors.price = 'Price must be greater than 0';
     }
 
     // Description validation
     if (!formData.description) {
       newErrors.description = 'Opis jest wymagany';
     } else if (formData.description.trim().length < 10) {
-      newErrors.description = 'Opis musi mieć co najmniej 10 znaków';
+      newErrors.description = 'Description must be at least 10 characters';
     }
 
     setErrors(newErrors);
@@ -182,7 +182,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 onChange={handleChange}
                 disabled={isSubmitting}
               />
-              Dostępny w magazynie
+              Available in stock
             </label>
           </div>
 
@@ -200,7 +200,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               disabled={isSubmitting}
               className="btn btn-primary"
             >
-              {isSubmitting ? 'Zapisywanie...' : (product ? 'Zaktualizuj' : 'Utwórz')}
+              {isSubmitting ? 'Saving...' : (product ? 'Update' : 'Create')}
             </button>
           </div>
         </form>

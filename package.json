@@ -1,7 +1,7 @@
 {
   "name": "clean-code-patterns-demo",
   "version": "1.0.0",
-  "description": "Demo projektu pokazujący wzorce projektowe, czysty kod i testowanie",
+  "description": "Demo project showcasing design patterns, clean code and testing",
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",

@@ -19,7 +19,7 @@ export const UserCard: React.FC<UserCardProps> = ({
   isDeleting
 }) => {
   const formatDate = (dateString: string): string => {
-    return new Date(dateString).toLocaleDateString('pl-PL', {
+    return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
@@ -36,7 +36,7 @@ export const UserCard: React.FC<UserCardProps> = ({
           <button
             onClick={onEdit}
             className="btn btn-small btn-secondary"
-            title="Edytuj użytkownika"
+            title="Edit user"
           >
             ✏️
           </button>
@@ -44,7 +44,7 @@ export const UserCard: React.FC<UserCardProps> = ({
             onClick={onDelete}
             disabled={isDeleting}
             className="btn btn-small btn-danger"
-            title="Usuń użytkownika"
+            title="Delete user"
           >
             {isDeleting ? '⏳' : '🗑️'}
           </button>
@@ -58,11 +58,11 @@ export const UserCard: React.FC<UserCardProps> = ({
         
         <div className="user-dates">
           <p className="user-date">
-            <strong>Utworzony:</strong> {formatDate(user.createdAt)}
+            <strong>Created:</strong> {formatDate(user.createdAt)}
           </p>
           {user.updatedAt !== user.createdAt && (
             <p className="user-date">
-              <strong>Zaktualizowany:</strong> {formatDate(user.updatedAt)}
+              <strong>Updated:</strong> {formatDate(user.updatedAt)}
             </p>
           )}
         </div>
